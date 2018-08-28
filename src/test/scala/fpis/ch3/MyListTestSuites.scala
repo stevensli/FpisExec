@@ -20,12 +20,12 @@ class MyListTestSuites extends FunSuite{
   }
 
   test("concat multi-MyLists"){
-    val xs1 = MyList(List.range(0, 1000): _*)
-    val xs2 = MyList(List.range(1000, 2000): _*)
-    val xs3 = MyList(List.range(2000, 3000): _*)
-    val xs4 = MyList(List.range(3000, 4000): _*)
-    val xs5 = MyList(List.range(4000, 5000): _*)
-    assert(MyListUtils.concat(xs1, xs2, xs3, xs4, xs5) == MyList(List.range(0, 5000): _*))
+    val xs1 = MyList(List.range(0, 10000): _*)
+    val xs2 = MyList(List.range(10000, 20000): _*)
+    val xs3 = MyList(List.range(20000, 30000): _*)
+    val xs4 = MyList(List.range(30000, 40000): _*)
+    val xs5 = MyList(List.range(40000, 50000): _*)
+    assert(MyListUtils.concat(xs1, xs2, xs3, xs4, xs5) == MyList(List.range(0, 50000): _*))
     assert(MyListUtils.concat(xs1) == xs1)
     assert(MyListUtils.concat() == MyNil)
   }
