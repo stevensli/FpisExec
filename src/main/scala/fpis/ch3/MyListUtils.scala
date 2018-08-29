@@ -33,6 +33,40 @@ object MyListUtils {
     go(xs, n)
   }
 
+  def takeWhile[A](xs: MyList[A])(f: A => Boolean): MyList[A] = {
+    import scala.collection.mutable.ListBuffer
+    val buf = new ListBuffer[A]
+
+    @tailrec
+    def go(ys: MyList[A])(f: A => Boolean): MyList[A] = {
+      ys match {
+        case Cons(h, t) if f(h) => buf += h; go(t)(f)
+        case _ => MyList(buf.toList: _*)
+      }
+    }
+
+    go(xs)(f)
+  }
+
+  @tailrec
+  def drop[A](xs: MyList[A], n: Int): MyList[A] = {
+    if(n <= 0) xs
+    else {
+      xs match {
+        case MyNil => MyNil
+        case Cons(h, t) => drop(t, n - 1)
+      }
+    }
+  }
+
+  @tailrec
+  def dropWhile[A](xs: MyList[A])(f: A => Boolean): MyList[A] ={
+    xs match {
+      case Cons(h, t) if f(h) => dropWhile(t)(f)
+      case _ => xs
+    }
+  }
+
   def safeFoldRight[A, B](xs: MyList[A], z: B)(f: (B, A) => B):B = foldLeft(reverse(xs), z)(f)
 
   def length[A](xs: MyList[A]): Int = foldLeft(xs, 0)((acc, x) => acc + 1)

@@ -57,7 +57,7 @@ class MyListTestSuites extends FunSuite{
     assert(MyListUtils.filterUsingFlatMap(xs)(_ % 2 == 1) == MyList(1, 3, 5, 7, 9))
   }
 
-  test("take n element"){
+  test("take n elements"){
     val ml = MyList(1, 2, 3, 4)
     assert(MyListUtils.take(ml, 2) == MyList(1, 2))
     assert(MyListUtils.take(ml, 4) == ml)
@@ -67,6 +67,28 @@ class MyListTestSuites extends FunSuite{
 
     assert(MyListUtils.take(MyNil, 8) == MyNil)
     assert(MyListUtils.take(MyNil, -9) == MyNil)
+  }
+
+  test("takeWhile"){
+    val ml = MyList(1, 2, 3, 4)
+    assert(MyListUtils.takeWhile(ml)(_ > 2) == MyNil)
+    assert(MyListUtils.takeWhile(ml)(_ < 3) == MyList(1, 2))
+    assert(MyListUtils.takeWhile(ml)(_ < 8) == ml)
+  }
+
+  test("drop n elements") {
+    val ml = MyList(1, 2, 3, 4)
+    assert(MyListUtils.drop(ml, -1) == ml)
+    assert(MyListUtils.drop(ml, 0) == ml)
+    assert(MyListUtils.drop(ml, 2) == MyList(3, 4))
+    assert(MyListUtils.drop(ml, 8) == MyNil)
+  }
+
+  test("dropWhile") {
+    val ml = MyList(1, 2, 3, 4)
+    assert(MyListUtils.dropWhile(ml)(_ > 2) == ml)
+    assert(MyListUtils.dropWhile(ml)(_ < 3) == MyList(3, 4))
+    assert(MyListUtils.dropWhile(ml)(_ < 8) == MyNil)
   }
 
   test("zipWith"){
