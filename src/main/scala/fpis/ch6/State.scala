@@ -41,7 +41,7 @@ object State {
     sas.reverse.foldLeft(unit[S, List[A]](List[A]()))((acc, f) => f.map2(acc)(_ :: _))
   }
 
-  def sequnece_raw[S, A](sas: List[State[S, A]]): State[S, List[A]] = {
+  def sequence_raw[S, A](sas: List[State[S, A]]): State[S, List[A]] = {
     import scala.collection.mutable.ListBuffer
     val buf = new ListBuffer[A]
 
